@@ -26,25 +26,8 @@ public class File implements Serializable{
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @Column(name = "FILE_EXTENSION", nullable = false)
-    private String fileExtension;
-
-    @Column(name = "FILE_SIZE_MB")
-    private Long fileSize;
-
-    @Column(name = "BASE64_STR")
-    @Type(type = "text")
-    private String base64Str;
-
-    @Column(nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
-    private Date createdAt;
-
-    @Column(nullable = false, updatable = true)
-    @Temporal(TemporalType.TIMESTAMP)
-    @LastModifiedDate
-    private Date updatedAt;
+    @Column(name = "CLOUD_SRC", nullable = false)
+    private String cloudSrc;
 
 
     public Long getId() {
@@ -71,43 +54,11 @@ public class File implements Serializable{
         this.description = description;
     }
 
-    public String getFileExtension() {
-        return fileExtension;
+    public String getCloudSrc() {
+        return cloudSrc;
     }
 
-    public void setFileExtension(String fileExtension) {
-        this.fileExtension = fileExtension;
-    }
-
-    public Long getFileSize() {
-        return fileSize;
-    }
-
-    public void setFileSize(Long fileSize) {
-        this.fileSize = fileSize;
-    }
-
-    public String getBase64Str() {
-        return base64Str;
-    }
-
-    public void setBase64Str(String base64Str) {
-        this.base64Str = base64Str;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setCloudSrc(String cloudSrc) {
+        this.cloudSrc = cloudSrc;
     }
 }

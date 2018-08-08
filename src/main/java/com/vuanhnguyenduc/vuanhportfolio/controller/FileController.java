@@ -17,12 +17,12 @@ public class FileController {
     @GetMapping("/insertFiles.html")
     private String insertFileForm(Model model){
         model.addAttribute("file", new File());
-        return "/file/insert";
+        return "admin/file/insert";
     }
 
     @PostMapping("/insertFiles.html")
     private String insertFileSubmit(@ModelAttribute File file){
         fileRepository.save(file);
-        return "index";
+        return "admin/file/view";
     }
 }
