@@ -1,14 +1,11 @@
 package com.vuanhnguyenduc.vuanhportfolio.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.Type;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+
 
 @Entity
 @Table(name = "FILE")
@@ -17,7 +14,7 @@ import java.util.Date;
 public class File implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(name = "FILE_ID", unique = true, nullable = false)
     private Long id;
 
     @Column(name = "TITLE", nullable = false)

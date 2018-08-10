@@ -1,3 +1,4 @@
+/*
 package com.vuanhnguyenduc.vuanhportfolio.repository;
 
 import com.vuanhnguyenduc.vuanhportfolio.model.Note;
@@ -7,3 +8,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NoteRepository extends JpaRepository<Note, Long>{
 }
+*/

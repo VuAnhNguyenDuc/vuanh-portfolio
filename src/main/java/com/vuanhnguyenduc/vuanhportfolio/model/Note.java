@@ -1,3 +1,4 @@
+/*
 package com.vuanhnguyenduc.vuanhportfolio.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -75,3 +76,4 @@ public class Note implements Serializable{
         this.updatedAt = updatedAt;
     }
 }
+*/

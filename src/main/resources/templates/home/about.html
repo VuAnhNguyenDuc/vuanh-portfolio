@@ -4,9 +4,21 @@
       lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About Me</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ABOUT ME</title>
+    <link th:href="@{/css/bootstrap.css}" type="text/css" rel="stylesheet">
+    <link th:href="@{/css/home.css}" type="text/css" rel="stylesheet">
 </head>
 <body>
 
+<div th:insert="home/layout :: navbar"></div>
+
+<div th:insert="home/layout :: layout-document"></div>
+
+<div th:insert="home/layout :: footer"></div>
+
+<script type="application/javascript" th:src="@{/js/jquery.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/popper.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 </body>
 </html>
