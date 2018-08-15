@@ -4,10 +4,36 @@
       lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Login Page">
+    <meta name="author" content="NguyenDucVuAnh">
     <title>ADMIN PAGE</title>
+    <th:block th:insert="admin/layout :: cssLibs">
+    </th:block>
 </head>
-<body>
-    <p th:text="${greetings}"></p>
+<body id="page-top">
+<th:block th:insert="admin/layout :: navbar">
+</th:block>
+
+<div id="wrapper">
+<th:block th:insert="admin/layout :: sidebar">
+</th:block>
+<div id="content-wrapper">
+    <div id="container-fluid">
+
+    </div>
+    <th:block th:insert="admin/layout :: footer">
+    </th:block>
+</div>
+</div>
+
+<th:block th:insert="admin/layout :: scrollToTop">
+</th:block>
+<th:block th:insert="admin/layout :: logoutModal">
+</th:block>
+
+<th:block th:insert="admin/layout :: jsLibs">
+</th:block>
 </body>
 </html>
