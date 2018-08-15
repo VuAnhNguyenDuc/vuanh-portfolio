@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="NguyenDucVuAnh">
+    <th:block th:fragment="cssLibs">
+        <!-- Bootstrap core CSS-->
+        <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+        <!-- Custom fonts for this template-->
+        <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+
+        <!-- Custom styles for this template-->
+        <link th:href="@{/css/sb-admin.css}" rel="stylesheet">
+    </th:block>
+</head>
+<body>
+<th:block th:fragment="jsLibs">
+    <!-- Bootstrap core JavaScript-->
+    <script type="application/javascript" th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <script type="application/javascript" th:src="@{/js/popper.min.js}"></script>
+    <script type="application/javascript"  th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script type="application/javascript"  th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+</th:block>
+</body>
+</html>

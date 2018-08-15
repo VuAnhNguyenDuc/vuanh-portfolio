@@ -11,6 +11,7 @@ public class VuanhPortfolioApplicationTests {
 
 	@Test
 	public void contextLoads() {
+
 	}
 
 }

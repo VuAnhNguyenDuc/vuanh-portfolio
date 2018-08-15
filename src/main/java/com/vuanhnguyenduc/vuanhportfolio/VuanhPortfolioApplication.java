@@ -20,6 +20,10 @@ https://stackoverflow.com/questions/30366405/how-to-disable-spring-security-for-
 
 Get users from MySQL
 https://medium.com/@gustavo.ponce.ch/spring-boot-spring-mvc-spring-security-mysql-a5d8545d837d
+
+<th:block sec:authorize="hasRole('ROLE_ADMIN')">
+    This content is only shown to administrators.
+</th:block>
 */
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 @EnableJpaAuditing

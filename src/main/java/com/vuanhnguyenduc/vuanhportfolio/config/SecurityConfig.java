@@ -32,29 +32,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    //@Value("${spring.queries.users-query}")
-    private String usersQuery = "select email, password, active from app_user where email=?";
+    @Value("${spring.queries.users-query}")
+    private String usersQuery;
 
-    //@Value("${spring.queries.roles-query}")
-    private String rolesQuery = "select u.email, r.role from app_user u inner join app_user_role aur on (u.user_id = aur.user_id) inner join role r on (aur.role_id = r.role_id) where u.email=?";
-
-
-
-    /*@Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        *//*auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance()).withUser("user")
-                .password("password").roles("USER")
-                .and()
-                .withUser("admin")
-                .password("admin")
-                .roles("USER","ADMIN");*//*
-
-        auth.jdbcAuthentication()
-                .usersByUsernameQuery(usersQuery)
-                .authoritiesByUsernameQuery(rolesQuery)
-                .dataSource(dataSource)
-                .passwordEncoder(bCryptPasswordEncoder);
-    }*/
+    @Value("${spring.queries.roles-query}")
+    private String rolesQuery;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -69,9 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/","/index.html","/about.html","/portfolio.html","/resume.html","/populateData").permitAll()
                 .antMatchers("/register.html").permitAll()
-                .antMatchers("/logout.html").permitAll()
                 .antMatchers("/admin","/admin/**").access("hasAuthority('USER') or hasAuthority('ADMIN')")
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login.html").permitAll()
@@ -80,11 +61,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .and().csrf()
                 .and().logout().permitAll().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .and().exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+                .and().exceptionHandling().accessDeniedHandler(accessDeniedHandler)
+                .and().rememberMe().key("uniqueAndSecret");//.rememberMeParameter("remember-me")
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/css/**","/js/**","/fonts/**","/images/**");
+        web.ignoring().antMatchers("/css/**","/js/**","/fonts/**","/images/**","/vendor/**");
     }
 }

@@ -49,6 +49,7 @@ public class AdminController {
         }
 
         if(result.hasErrors()){
+            model.addAttribute("user",user);
             return "admin/register";
         } else {
             userService.saveUser(user);
