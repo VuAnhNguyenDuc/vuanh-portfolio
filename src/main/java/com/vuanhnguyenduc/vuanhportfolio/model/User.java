@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Date;
@@ -24,7 +25,6 @@ public class User implements Serializable{
     private Long id;
 
     @Column(name = "EMAIL")
-    @UniqueElements(message = "This email is used already")
     @Email(message = "Please provide a valid email")
     @NotEmpty(message = "Please provide an email")
     private String email;
@@ -35,9 +35,11 @@ public class User implements Serializable{
     private String password;
 
     @Column(name = "FIRST_NAME")
+    @NotBlank(message = "First Name cannot be blank")
     private String firstName;
 
     @Column(name = "LAST_NAME")
+    @NotBlank(message = "Last Name cannot be blank")
     private String lastName;
 
     @Column(name = "ACTIVE")
@@ -50,7 +52,7 @@ public class User implements Serializable{
     )
     private Set<Role> roles;
 
-    @Column(name = "CREATED_AT", nullable = false)
+    @Column(name = "CREATED_AT")
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date createdAt;

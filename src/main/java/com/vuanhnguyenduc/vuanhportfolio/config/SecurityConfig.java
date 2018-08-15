@@ -14,12 +14,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-@ComponentScan(value = "com.vuanhnguyenduc")
+@ComponentScan(value = "com.vuanhnguyenduc.vuanhportfolio")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -28,42 +29,57 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
-    @Value("${spring.queries.users-query}")
-    private String usersQuery;
-
-    @Value("${spring.queries.roles-query}")
-    private String rolesQuery;
-
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
-        BCryptPasswordEncoder bCryptPasswordEncoder =  new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder;
-    }
-
     @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    //@Value("${spring.queries.users-query}")
+    private String usersQuery = "select email, password, active from app_user where email=?";
+
+    //@Value("${spring.queries.roles-query}")
+    private String rolesQuery = "select u.email, r.role from app_user u inner join app_user_role aur on (u.user_id = aur.user_id) inner join role r on (aur.role_id = r.role_id) where u.email=?";
+
+
+
+    /*@Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance()).withUser("user")
+        *//*auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance()).withUser("user")
                 .password("password").roles("USER")
                 .and()
                 .withUser("admin")
                 .password("admin")
-                .roles("USER","ADMIN");
+                .roles("USER","ADMIN");*//*
 
         auth.jdbcAuthentication()
                 .usersByUsernameQuery(usersQuery)
                 .authoritiesByUsernameQuery(rolesQuery)
                 .dataSource(dataSource)
-                .passwordEncoder(passwordEncoder());
+                .passwordEncoder(bCryptPasswordEncoder);
+    }*/
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.
+                jdbcAuthentication()
+                .usersByUsernameQuery(usersQuery)
+                .authoritiesByUsernameQuery(rolesQuery)
+                .dataSource(dataSource)
+                .passwordEncoder(bCryptPasswordEncoder);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/about.html").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/register.html").permitAll()
+                .antMatchers("/logout.html").permitAll()
+                .antMatchers("/admin","/admin/**").access("hasAuthority('USER') or hasAuthority('ADMIN')")
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login.html").permitAll()
+                .defaultSuccessUrl("/admin")
+                .usernameParameter("email")
+                .passwordParameter("password")
                 .and().csrf()
-                .and().logout().permitAll()
+                .and().logout().permitAll().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .and().exceptionHandling().accessDeniedHandler(accessDeniedHandler);
     }
 
@@ -72,47 +88,3 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/css/**","/js/**","/fonts/**","/images/**");
     }
 }
-
-/*
-@Autowired
-    private AccessDeniedHandler accessDeniedHandler;
-
-    // roles admin allow to access /admin/**
-    // roles user allow to access /user/**
-    // custom 403 access denied handler
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/admin/**")
-                .access("hasRole('ADMIN') or hasRole('VISITOR')")
-                .and()
-                .formLogin().loginPage("/login.html")
-                .and()
-                .logout().permitAll()
-                .and().csrf()
-                .and().exceptionHandling().accessDeniedHandler(accessDeniedHandler);
-
-        http.csrf().disable().authorizeRequests()
-                .antMatchers("/admin").access("hasRole('ADMIN') or hasRole('VISITOR')")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().loginPage("/login.html").permitAll()
-                .and()
-                .logout().permitAll()
-                .and()
-                .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
-@Override
-public void configure(WebSecurity web) throws Exception{
-        web.ignoring().antMatchers("/index.html","/");
-        }
-
-// create two users, admin and visitor
-@Autowired
-public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-
-        auth.inMemoryAuthentication()
-        .withUser("visitor").password("password").roles("VISITOR")
-        .and()
-        .withUser("admin").password("password").roles("ADMIN");
-        }
-*/
