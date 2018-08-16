@@ -19,6 +19,25 @@ body {
   font-weight: bold;
 }
 
+.custom-error-body {
+  color: #73879C;
+  background: #2A3F54;
+  font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.471;
+}
+
+.col-middle {
+    margin-top: 5%;
+}
+
+.error-number {
+    font-size: 90px;
+    line-height: 90px;
+    margin: 20px 0;
+}
+
 #wrapper {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -4,10 +4,46 @@
       lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>403 PAGE</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="NguyenDucVuAnh">
+    <title>403 - Access Denied</title>
+    <th:block th:insert="admin/layout :: cssLibs">
+    </th:block>
 </head>
-<body>
-    <p><span th:text="${user}"></span> does not have enough privileges to access this site</p>
+<body class="custom-error-body">
+<div class="container body">
+    <div class="main_container">
+        <!-- page content -->
+        <div class="col-md-12">
+            <div class="col-middle">
+                <div class="text-center text-center">
+                    <h1 class="error-number">403</h1>
+                    <h2>Access denied</h2>
+                    <p>You do not have enough permission to access this page. <a th:href="@{/admin}">Admin Page</a>
+                    </p>
+                    <!--<div class="mid_center">
+                        <h3>Search</h3>
+                        <form>
+                            <div class="col-xs-12 form-group pull-right top_search">
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="Search for..." type="text">
+                                    <span class="input-group-btn">
+                              <button class="btn btn-default" type="button">Go!</button>
+                          </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+    </div>
+</div>
+
+<th:block th:insert="admin/layout :: jsLibs">
+</th:block>
 </body>
 </html>

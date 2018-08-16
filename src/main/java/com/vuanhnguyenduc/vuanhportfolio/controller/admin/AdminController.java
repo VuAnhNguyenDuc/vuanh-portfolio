@@ -52,6 +52,10 @@ public class AdminController {
             model.addAttribute("user",user);
             return "admin/register";
         } else {
+            if(!user.getPassword().equals(user.getConfirmPassword())){
+                result.rejectValue("password","error.user","Password confirmation is incorrect");
+                return "admin/register";
+            }
             userService.saveUser(user);
             return "redirect:/login.html";
         }

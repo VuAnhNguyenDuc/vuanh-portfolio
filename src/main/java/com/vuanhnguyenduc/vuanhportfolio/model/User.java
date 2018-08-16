@@ -57,6 +57,9 @@ public class User implements Serializable{
     @CreatedDate
     private Date createdAt;
 
+    @Transient
+    private String confirmPassword;
+
     public Long getId() {
         return id;
     }
@@ -119,5 +122,13 @@ public class User implements Serializable{
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 }
