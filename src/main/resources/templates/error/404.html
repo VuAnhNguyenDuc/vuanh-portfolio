@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="NguyenDucVuAnh">
+    <title>404 - Not Found</title>
+    <th:block th:insert="admin/layout :: cssLibs">
+    </th:block>
+</head>
+<body class="custom-error-body">
+<div class="container body">
+    <div class="main_container">
+        <!-- page content -->
+        <div class="col-md-12">
+            <div class="col-middle">
+                <div class="text-center text-center">
+                    <h1 class="error-number">404</h1>
+                    <h2>We're sorry, we cannot find the page you requested</h2>
+                    <p>Please recheck your url or maybe go back to <a th:href="@{/admin}">Admin Page</a>
+                    </p>
+                    <!--<div class="mid_center">
+                        <h3>Search</h3>
+                        <form>
+                            <div class="col-xs-12 form-group pull-right top_search">
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="Search for..." type="text">
+                                    <span class="input-group-btn">
+                              <button class="btn btn-default" type="button">Go!</button>
+                          </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+    </div>
+</div>
+
+<th:block th:insert="admin/layout :: jsLibs">
+</th:block>
+</body>
+</html>

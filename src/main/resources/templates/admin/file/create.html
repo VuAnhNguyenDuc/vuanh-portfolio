@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="NguyenDucVuAnh">
+    <title>CREATE FILE</title>
+    <th:block th:insert="admin/layout :: cssLibs">
+    </th:block>
+</head>
+<body id="page-top">
+<th:block th:insert="admin/layout :: navbar">
+</th:block>
+<div id="wrapper">
+    <th:block th:insert="admin/layout :: sidebar('file')">
+    </th:block>
+    <div id="content-wrapper">
+        <div class="container-fluid">
+            <form th:action="@{/create.html}" method="post" th:object="${file}" autocomplete="off">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input th:placeholder="Enter Title" class="form-control" id="title" th:field="*{title}">
+                    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="cloudSrc">Cloud Source</label>
+                    <input th:placeholder="....." class="form-control" id="cloudSrc" th:field="*{cloudSrc}">
+                    <p th:if="${#fields.hasErrors('title')}" th:errors="*{cloudSrc}" class="error"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input th:placeholder="....." class="form-control" id="description" th:field="*{description}">
+                    <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="error"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="type">Type</label>
+                    <select class="form-control" id="type">
+                        <option th:value="IMAGE">IMAGE</option>
+                        <option th:value="VIDEO">VIDEO</option>
+                        <option th:value="DOCUMENT">DOCUMENT</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<th:block th:insert="admin/layout :: jsLibs">
+</th:block>
+</body>
+</html>

@@ -24,6 +24,9 @@ https://medium.com/@gustavo.ponce.ch/spring-boot-spring-mvc-spring-security-mysq
 <th:block sec:authorize="hasRole('ROLE_ADMIN')">
     This content is only shown to administrators.
 </th:block>
+
+Custom error pages
+https://www.baeldung.com/spring-boot-custom-error-page
 */
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 @EnableJpaAuditing
