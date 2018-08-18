@@ -28,6 +28,11 @@ body {
   line-height: 1.471;
 }
 
+.input-group-btn{
+  display: block;
+  text-align: center;
+}
+
 .col-middle {
     margin-top: 5%;
 }

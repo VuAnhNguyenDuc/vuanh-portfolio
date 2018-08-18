@@ -75,6 +75,6 @@ public class FileController {
         }
 
         fileRepository.save(file);
-        return "redirect:/files";
+        return "redirect:/admin/files";
     }
 }
