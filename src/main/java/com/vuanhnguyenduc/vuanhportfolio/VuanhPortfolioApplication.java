@@ -27,6 +27,9 @@ https://medium.com/@gustavo.ponce.ch/spring-boot-spring-mvc-spring-security-mysq
 
 Custom error pages
 https://www.baeldung.com/spring-boot-custom-error-page
+
+Primary Keys
+https://www.thoughts-on-java.org/jpa-generate-primary-keys/
 */
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 @EnableJpaAuditing

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/admin")
@@ -23,7 +24,8 @@ public class FileController {
     private static final String UPDATE_PAGE = "admin/file/update";
 
     @GetMapping("/files")
-    public String getFiles(){
+    public String getFiles(Model model){
+        model.addAttribute("files",fileRepository.findAll());
         return "admin/file/get";
     }
 
@@ -44,32 +46,38 @@ public class FileController {
         }
     }
 
-    @GetMapping("/updateFile/file-id-{id}")
-    public String updatePage(@PathVariable Integer id, Model model){
-        File file = fileRepository.getOne(Long.valueOf(id));
+    @GetMapping("/updateFile/{title}/{id}")
+    public String updatePage(@PathVariable int id, Model model){
+        File file = fileRepository.getOne((long) id);
+        //File file = fileRepository.findAll().get(0);
         model.addAttribute("file",file);
         return UPDATE_PAGE;
     }
 
-    @PostMapping("/updateFile")
-    public String update(@Valid File file, BindingResult result, Model model){
+    @PostMapping("/updateFile/{id}")
+    public String update(@Valid File file, BindingResult result,@PathVariable int id, Model model){
         if(result.hasErrors()){
             model.addAttribute("file",file);
             return UPDATE_PAGE;
         } else{
-            return checkForValidFile(file,result);
+            File oldFile = fileRepository.getOne((long) id);
+            oldFile.setCloudSrc(file.getCloudSrc());
+            oldFile.setDescription(file.getDescription());
+            oldFile.setTitle(file.getTitle());
+            oldFile.setType(file.getType());
+            return checkForValidFile(oldFile,result);
         }
     }
 
     private String checkForValidFile(File file, BindingResult result){
         File checkBySrc = fileRepository.getByCloudSrc(file.getCloudSrc());
-        if(checkBySrc != null){
+        if(checkBySrc != null && (file.getId() == null || !Objects.equals(file.getId(), checkBySrc.getId()))){
             result.rejectValue("cloudSrc","error.file","A file with the same source already existed!");
             return CREATE_PAGE;
         }
 
         File checkByTitle = fileRepository.getByTitle(file.getTitle());
-        if(checkByTitle != null){
+        if(checkByTitle != null && (file.getId() == null || !Objects.equals(file.getId(), checkByTitle.getId()))){
             result.rejectValue("title","error.file","A file with the same title already existed!");
             return CREATE_PAGE;
         }
