@@ -20,7 +20,8 @@ import java.util.Set;
 @JsonIgnoreProperties(value = {"createdAt"}, allowGetters = true)
 public class User implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_generator")
+    @SequenceGenerator(name = "user_generator", sequenceName = "user_seq")
     @Column(name = "USER_ID", nullable = false, unique = true)
     private Long id;
 

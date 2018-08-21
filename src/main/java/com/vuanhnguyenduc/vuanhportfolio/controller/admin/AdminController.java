@@ -1,5 +1,7 @@
 package com.vuanhnguyenduc.vuanhportfolio.controller.admin;
 
+import com.vuanhnguyenduc.vuanhportfolio.commons.Constants;
+import com.vuanhnguyenduc.vuanhportfolio.config.IAuthenticationFacade;
 import com.vuanhnguyenduc.vuanhportfolio.model.User;
 import com.vuanhnguyenduc.vuanhportfolio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import javax.validation.Valid;
 
 
@@ -19,14 +20,16 @@ public class AdminController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    IAuthenticationFacade authenticationFacade;
+
     @GetMapping("/admin")
     public String adminPage(Model model){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByEmail(auth.getName());
+        User user = authenticationFacade.getLoggedUser();
         if(user != null){
             model.addAttribute("greetings", String.format("Welcome %s %s",user.getFirstName(),user.getLastName()));
         }
-        return "admin/index";
+        return Constants.ADMIN_HOME_PAGE;
     }
 
     @GetMapping("/login.html")
@@ -38,7 +41,7 @@ public class AdminController {
     public String registerPage(Model model){
         User user = new User();
         model.addAttribute("user", user);
-        return "admin/register";
+        return Constants.ADMIN_REGISTER_PAGE;
     }
 
     @PostMapping("/register.html")
@@ -50,14 +53,14 @@ public class AdminController {
 
         if(result.hasErrors()){
             model.addAttribute("user",user);
-            return "admin/register";
+            return Constants.ADMIN_REGISTER_PAGE;
         } else {
             if(!user.getPassword().equals(user.getConfirmPassword())){
                 result.rejectValue("password","error.user","Password confirmation is incorrect");
-                return "admin/register";
+                return Constants.ADMIN_REGISTER_PAGE;
             }
             userService.saveUser(user);
-            return "redirect:/login.html";
+            return Constants.ADMIN_REDIRECT_LOGIN_PAGE;
         }
     }
 
@@ -65,7 +68,7 @@ public class AdminController {
     public String error403Page(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("user",authentication.getName());
-        return "error/403";
+        return Constants.ERROR_403_PAGE;
     }
 
 }

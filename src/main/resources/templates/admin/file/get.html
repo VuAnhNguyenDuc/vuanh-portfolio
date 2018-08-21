@@ -59,10 +59,12 @@
                             <td th:text="${file.type}"></td>
                             <td th:text="${file.createdAt}"></td>
                             <td th:text="${file.updatedAt}"></td>
-                            <th:block th:with="title=${#strings.toLowerCase(file.title)},filename=${#strings.multipleReplace(title,{' '},{'-'})}">
-                                <td><!--/*@thymesVar id="file" type=""*/-->
+                            <td><a th:href="@{/admin/updateFile/{filename}/{id}(id=${file.id},filename=${file.titleUrl})}" class="btn btn-success" role="button">Update</a></td>
+
+                            <!--<th:block th:with="title=${#strings.toLowerCase(file.title)},filename=${#strings.multipleReplace(title,{' '},{'-'})}">
+                                <td>&lt;!&ndash;/*@thymesVar id="file" type=""*/&ndash;&gt;
                                 <a th:href="@{/admin/updateFile/{filename}/{id}(id=${file.id},filename=${filename})}" class="btn btn-success" role="button">Update</a></td>
-                            </th:block>
+                            </th:block>-->
                         </tr>
                         </tbody>
                     </table>

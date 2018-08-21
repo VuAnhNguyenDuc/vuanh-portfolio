@@ -1,6 +1,7 @@
 package com.vuanhnguyenduc.vuanhportfolio.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.vuanhnguyenduc.vuanhportfolio.dto.FileDTO;
 import org.hibernate.annotations.GeneratorType;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedBy;
@@ -20,7 +21,8 @@ import java.util.Date;
 @JsonIgnoreProperties(value = {"createdAt","uploadedAt"}, allowGetters = true)
 public class File implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "file_generator")
+    @SequenceGenerator(name = "file_generator", sequenceName = "file_seq", initialValue = 1, allocationSize = 50)
     @Column(name = "FILE_ID", unique = true, nullable = false)
     private Long id;
 
@@ -47,6 +49,13 @@ public class File implements Serializable{
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date updatedAt;
+
+    public void map(FileDTO fileDTO){
+        this.title = fileDTO.getTitle();
+        this.description = fileDTO.getDescription();
+        this.cloudSrc = fileDTO.getCloudSrc();
+        this.type = fileDTO.getType();
+    }
 
     public Long getId() {
         return id;

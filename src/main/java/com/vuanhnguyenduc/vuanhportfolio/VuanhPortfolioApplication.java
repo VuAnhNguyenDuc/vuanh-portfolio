@@ -17,6 +17,7 @@ http://www.mkyong.com/spring-boot/spring-boot-spring-security-thymeleaf-example/
 https://spring.io/guides/gs/securing-web/
 https://www.baeldung.com/spring-boot-security-autoconfiguration
 https://stackoverflow.com/questions/30366405/how-to-disable-spring-security-for-particular-url/30366773
+https://www.baeldung.com/get-user-in-spring-security
 
 Get users from MySQL
 https://medium.com/@gustavo.ponce.ch/spring-boot-spring-mvc-spring-security-mysql-a5d8545d837d
