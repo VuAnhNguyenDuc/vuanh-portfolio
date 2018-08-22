@@ -23,7 +23,7 @@
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fas fa-table"></i>
-                Data Table Example
+                Showing List Of Files
                 <a th:href="@{/admin/createFile}" role="button" class="btn btn-primary">Create New File</a>
             </div>
             <div class="card-body">
@@ -32,7 +32,6 @@
                         <thead>
                         <tr>
                             <th>TITLE</th>
-                            <th>DESCRIPTION</th>
                             <th>CLOUD SOURCE</th>
                             <th>TYPE</th>
                             <th>CREATED AT</th>
@@ -43,7 +42,6 @@
                         <tfoot>
                         <tr>
                             <th>TITLE</th>
-                            <th>DESCRIPTION</th>
                             <th>CLOUD SOURCE</th>
                             <th>TYPE</th>
                             <th>CREATED AT</th>
@@ -54,8 +52,7 @@
                         <tbody>
                         <tr th:each="file : ${files}">
                             <td th:text="${file.title}"></td>
-                            <td th:text="${file.description}"></td>
-                            <td th:text="${file.cloudSrc}"></td>
+                            <td><a th:href="${file.cloudSrc}" th:text="${file.cloudSrc}"></a></td>
                             <td th:text="${file.type}"></td>
                             <td th:text="${file.createdAt}"></td>
                             <td th:text="${file.updatedAt}"></td>

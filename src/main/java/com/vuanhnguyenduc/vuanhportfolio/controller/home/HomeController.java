@@ -1,5 +1,6 @@
 package com.vuanhnguyenduc.vuanhportfolio.controller.home;
 
+import com.vuanhnguyenduc.vuanhportfolio.commons.Constants;
 import com.vuanhnguyenduc.vuanhportfolio.model.Role;
 import com.vuanhnguyenduc.vuanhportfolio.model.User;
 import com.vuanhnguyenduc.vuanhportfolio.repository.RoleRepository;
@@ -26,22 +27,22 @@ public class HomeController {
 
     @GetMapping({"/","/index.html"})
     public String homePage(Model model){
-        return "home/index";
+        return Constants.HOME_PAGE;
     }
 
     @GetMapping("/about.html")
     public String aboutPage(Model model){
-        return "home/about";
+        return Constants.ABOUT_PAGE;
     }
 
     @GetMapping("/portfolio.html")
     public String portfolioPage(Model model){
-        return "home/portfolio";
+        return Constants.PORTFOLIO_PAGE;
     }
 
     @GetMapping("/resume.html")
     public String resumePage(Model model){
-        return "home/resume";
+        return Constants.RESUME_PAGE;
     }
 
     @GetMapping("/populateData")

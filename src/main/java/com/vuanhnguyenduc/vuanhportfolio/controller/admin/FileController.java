@@ -7,13 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,9 +21,7 @@ public class FileController {
     @Autowired
     FileRepository fileRepository;
 
-    @Autowired
-
-
+    private static final String GET_PAGE = "admin/file/get";
     private static final String CREATE_PAGE = "admin/file/create";
     private static final String UPDATE_PAGE = "admin/file/update";
 
@@ -37,7 +33,7 @@ public class FileController {
             fileDTOS.add(new FileDTO(file));
         }
         model.addAttribute("files",fileDTOS);
-        return "admin/file/get";
+        return GET_PAGE;
     }
 
     @GetMapping("/createFile")
@@ -54,7 +50,7 @@ public class FileController {
             return CREATE_PAGE;
         } else{
             File file = new File();
-            file.map(fileDTO);
+            map(fileDTO,file);
             return checkForValidFile(file,result);
         }
     }
@@ -74,7 +70,7 @@ public class FileController {
             return UPDATE_PAGE;
         } else{
             File file = fileRepository.getOne((long) id);
-            file.map(fileDTO);
+            map(fileDTO,file);
             return checkForValidFile(file,result);
         }
     }
@@ -94,5 +90,17 @@ public class FileController {
 
         fileRepository.save(file);
         return "redirect:/admin/files";
+    }
+
+    @ModelAttribute("fileTypes")
+    public List<String> getFileTypes(){
+        return new ArrayList<>(Arrays.asList("IMAGE", "VIDEO", "DOCUMENT"));
+    }
+
+    public void map(FileDTO fileDTO, File file){
+        file.setTitle(fileDTO.getTitle());
+        file.setDescription(fileDTO.getDescription());
+        file.setCloudSrc(fileDTO.getCloudSrc());
+        file.setType(fileDTO.getType());
     }
 }

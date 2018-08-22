@@ -37,6 +37,10 @@ public class Album {
     )
     private Set<File> files;
 
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ALBUM_ID")
+    private Set<Document> documents;
+
     @Column(name = "CREATED_AT", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
@@ -101,5 +105,13 @@ public class Album {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Set<Document> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(Set<Document> documents) {
+        this.documents = documents;
     }
 }

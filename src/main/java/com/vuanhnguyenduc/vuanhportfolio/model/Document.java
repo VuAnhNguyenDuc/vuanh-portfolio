@@ -33,6 +33,9 @@ public class Document {
     @Type(type = "text")
     private String content;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Album album;
+
     @Column(name = "CREATED_AT",nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
@@ -89,5 +92,13 @@ public class Document {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Album getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(Album album) {
+        this.album = album;
     }
 }

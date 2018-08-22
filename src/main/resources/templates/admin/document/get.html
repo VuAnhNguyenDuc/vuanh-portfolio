@@ -8,9 +8,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="NguyenDucVuAnh">
-    <title>Title</title>
+    <title>DOCUMENTS</title>
+    <th:block th:insert="admin/layout :: cssLibs">
+    </th:block>
 </head>
-<body>
-
+<body id="page-top">
+<th:block th:insert="admin/layout :: navbar">
+</th:block>
+<div id="wrapper">
+    <th:block th:insert="admin/layout :: sidebar('document')">
+    </th:block>
+    <div id="content-wrapper">
+        <div class="container-fluid">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    Showing List Of Documents
+                    <a th:href="@{/admin/createDocument}" role="button" class="btn btn-primary">Create New Document</a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>TITLE</th>
+                                <th>COVER PREVIEW</th>
+                                <th>BELONGS TO ALBUM</th>
+                                <th>CREATED AT</th>
+                                <th>UPDATED AT</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>TITLE</th>
+                                <th>COVER PREVIEW</th>
+                                <th>BELONGS TO ALBUM</th>
+                                <th>CREATED AT</th>
+                                <th>UPDATED AT</th>
+                                <th></th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            <tr th:each="doc : ${documents}">
+                                <td th:text="${doc.title}"></td>
+                                <td><img src="" th:src="${doc.coverSrc}" th:alt="${doc.title}" class="img-thumbnail"/></td>
+                                <td th:text="${doc.albumName}"></td>
+                                <td th:text="${doc.createdAt}"></td>
+                                <td th:text="${doc.updatedAt}"></td>
+                                <td><a th:href="@{/admin/updateDocument/{name}/{id}(id=${doc.id},name=${doc.titleUrl})}" class="btn btn-success" role="button">Update</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:insert="admin/layout :: jsLibs">
+</th:block>
 </body>
 </html>

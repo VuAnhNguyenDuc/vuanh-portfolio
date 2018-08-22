@@ -1,5 +1,6 @@
 package com.vuanhnguyenduc.vuanhportfolio.controller.admin;
 
+import com.vuanhnguyenduc.vuanhportfolio.commons.Constants;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -23,9 +24,9 @@ public class CustomErrorController implements ErrorController {
             Integer statusCode = Integer.valueOf(status.toString());
 
             if(statusCode == HttpStatus.NOT_FOUND.value()){
-                return "error/404";
+                return Constants.ERROR_404_PAGE;
             } else if(statusCode == HttpStatus.FORBIDDEN.value()){
-                return "error/403";
+                return Constants.ERROR_403_PAGE;
             }
         }
         return null;

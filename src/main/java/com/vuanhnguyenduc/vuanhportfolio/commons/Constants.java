@@ -12,6 +12,7 @@ public final class Constants {
 
     public static final String HOME_PAGE = "home/index";
     public static final String ABOUT_PAGE = "home/about";
-
+    public static final String RESUME_PAGE = "home/resume";
+    public static final String PORTFOLIO_PAGE = "home/portfolio";
 
 }

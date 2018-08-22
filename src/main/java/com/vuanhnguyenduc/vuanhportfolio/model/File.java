@@ -50,13 +50,6 @@ public class File implements Serializable{
     @LastModifiedDate
     private Date updatedAt;
 
-    public void map(FileDTO fileDTO){
-        this.title = fileDTO.getTitle();
-        this.description = fileDTO.getDescription();
-        this.cloudSrc = fileDTO.getCloudSrc();
-        this.type = fileDTO.getType();
-    }
-
     public Long getId() {
         return id;
     }
