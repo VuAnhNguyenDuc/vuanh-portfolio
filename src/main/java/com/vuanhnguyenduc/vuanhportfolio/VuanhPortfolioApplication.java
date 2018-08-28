@@ -28,6 +28,7 @@ https://medium.com/@gustavo.ponce.ch/spring-boot-spring-mvc-spring-security-mysq
 
 Custom error pages
 https://www.baeldung.com/spring-boot-custom-error-page
+https://stackoverflow.com/questions/22948257/thymeleaf-not-displaying-spring-form-error-messages
 
 Primary Keys
 https://www.thoughts-on-java.org/jpa-generate-primary-keys/

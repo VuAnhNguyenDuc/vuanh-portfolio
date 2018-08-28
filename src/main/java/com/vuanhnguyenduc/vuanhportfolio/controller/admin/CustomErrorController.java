@@ -19,16 +19,18 @@ public class CustomErrorController implements ErrorController {
     @GetMapping("/error")
     public String handleError(HttpServletRequest request){
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+        Exception exception = (Exception) request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
 
         if(status != null){
             Integer statusCode = Integer.valueOf(status.toString());
-
             if(statusCode == HttpStatus.NOT_FOUND.value()){
                 return Constants.ERROR_404_PAGE;
             } else if(statusCode == HttpStatus.FORBIDDEN.value()){
                 return Constants.ERROR_403_PAGE;
+            } else{
+                return String.format("<html><body><h2>Error Page</h2><div>Status Code : <b>%s</b></div><div>Exception Message: <b>%s</b></div><body></html>",statusCode,exception.getMessage());
             }
         }
-        return null;
+        return String.format("<html><body><h2>Error Page</h2><div>Exception Message: <b>%s</b></div><body></html>",exception.getMessage());
     }
 }

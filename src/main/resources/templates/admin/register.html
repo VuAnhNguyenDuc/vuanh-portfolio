@@ -24,18 +24,14 @@
                             <div class="form-label-group">
                                 <input id="firstName" class="form-control" placeholder="First name" required autofocus th:field="*{firstName}">
                                 <label for="firstName">First name</label>
-                                <th:block>
-                                    <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error"></p>
-                                </th:block>
+                                <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error"></p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-label-group">
                                 <input type id="lastName" class="form-control" placeholder="Last name" required th:field="*{lastName}">
                                 <label for="lastName">Last name</label>
-                                <th:block>
-                                    <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error"></p>
-                                </th:block>
+                                <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error"></p>
                             </div>
                         </div>
                     </div>
@@ -53,9 +49,7 @@
                             <div class="form-label-group">
                                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" required th:field="*{password}">
                                 <label for="inputPassword">Password</label>
-                                <th:block>
-                                    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></p>
-                                </th:block>
+                                <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></p>
                             </div>
                         </div>
                         <div class="col-md-6">

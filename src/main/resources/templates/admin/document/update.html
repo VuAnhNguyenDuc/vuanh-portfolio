@@ -19,6 +19,18 @@
     <th:block th:insert="admin/layout :: sidebar('document')">
     </th:block>
     <div id="content-wrapper">
+        <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a th:href="@{/admin}">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a th:href="@{/admin/documents}">Documents</a>
+                </li>
+                <li class="breadcrumb-item active">Update Document</li>
+            </ol>
+        </div>
         <div class="container">
             <div class="row justify-content-center">
                 <h1>UPDATE DOCUMENT FORM</h1>
@@ -63,6 +75,10 @@
         </div>
     </div>
 </div>
+<th:block th:insert="admin/layout :: scrollToTop">
+</th:block>
+<th:block th:insert="admin/layout :: logoutModal">
+</th:block>
 <th:block th:insert="admin/layout :: jsLibs">
 </th:block>
 <script type="application/javascript">

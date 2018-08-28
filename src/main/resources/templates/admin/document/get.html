@@ -20,6 +20,14 @@
     </th:block>
     <div id="content-wrapper">
         <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a th:href="@{/admin}">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">Documents</li>
+            </ol>
+
             <div class="card mb-3">
                 <div class="card-header">
                     <i class="fas fa-table"></i>
@@ -67,6 +75,10 @@
         </div>
     </div>
 </div>
+<th:block th:insert="admin/layout :: scrollToTop">
+</th:block>
+<th:block th:insert="admin/layout :: logoutModal">
+</th:block>
 <th:block th:insert="admin/layout :: jsLibs">
 </th:block>
 </body>

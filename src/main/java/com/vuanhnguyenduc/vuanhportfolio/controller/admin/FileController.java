@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Objects;
 
 @Controller
-@RequestMapping("/admin")
 public class FileController {
     @Autowired
     FileRepository fileRepository;
@@ -24,29 +23,31 @@ public class FileController {
     private static final String GET_PAGE = "admin/file/get";
     private static final String CREATE_PAGE = "admin/file/create";
     private static final String UPDATE_PAGE = "admin/file/update";
+    private static final String FILE = "file";
+    private static final String FILES = "files";
 
-    @GetMapping("/files")
+    @GetMapping("/admin/files")
     public String getFiles(Model model){
         List<File> files = fileRepository.findAll();
         List<FileDTO> fileDTOS = new ArrayList<>();
         for(File file : files){
             fileDTOS.add(new FileDTO(file));
         }
-        model.addAttribute("files",fileDTOS);
+        model.addAttribute(FILES,fileDTOS);
         return GET_PAGE;
     }
 
-    @GetMapping("/createFile")
+    @GetMapping("/admin/createFile")
     public String createPage(Model model){
         FileDTO file = new FileDTO();
-        model.addAttribute("file",file);
+        model.addAttribute(FILE,file);
         return CREATE_PAGE;
     }
 
-    @PostMapping("/createFile")
-    public String create(@Valid FileDTO fileDTO, BindingResult result, Model model){
+    @PostMapping("/admin/createFile")
+    public String create(@Valid @ModelAttribute(FILE) FileDTO fileDTO, BindingResult result, Model model){
         if(result.hasErrors()){
-            model.addAttribute("file",fileDTO);
+            model.addAttribute(FILE,fileDTO);
             return CREATE_PAGE;
         } else{
             File file = new File();
@@ -55,18 +56,18 @@ public class FileController {
         }
     }
 
-    @GetMapping("/updateFile/{title}/{id}")
+    @GetMapping("/admin/updateFile/{title}/{id}")
     public String updatePage(@PathVariable int id, Model model){
         File file = fileRepository.getOne((long) id);
         FileDTO fileDTO = new FileDTO(file);
-        model.addAttribute("file",fileDTO);
+        model.addAttribute(FILE,fileDTO);
         return UPDATE_PAGE;
     }
 
-    @PostMapping("/updateFile/{id}")
-    public String update(@Valid FileDTO fileDTO, BindingResult result,@PathVariable int id, Model model){
+    @PostMapping("/admin/updateFile/{id}")
+    public String update(@Valid @ModelAttribute(FILE) FileDTO fileDTO, BindingResult result,@PathVariable int id, Model model){
         if(result.hasErrors()){
-            model.addAttribute("file",fileDTO);
+            model.addAttribute(FILE,fileDTO);
             return UPDATE_PAGE;
         } else{
             File file = fileRepository.getOne((long) id);

@@ -1,19 +1,23 @@
 package com.vuanhnguyenduc.vuanhportfolio.dto;
 
 import com.vuanhnguyenduc.vuanhportfolio.model.Document;
+import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
 public class DocumentDTO implements Serializable {
     private Long id;
-    @NotBlank(message = "Mandatory Field")
-    @Min(value = 5, message = "Title cannot be lower than 5 characters")
+
+    @Length(min = 5, message = "Title cannot be lower than 5 characters")
     private String title;
+
     @NotBlank(message = "Mandatory Field")
     private String coverSrc;
+
     private String content;
     private Long albumId;
     private String albumName;
@@ -32,8 +36,10 @@ public class DocumentDTO implements Serializable {
         this.createdAt = document.getCreatedAt();
         this.updatedAt = document.getUpdatedAt();
         this.titleUrl = document.getTitle().toLowerCase().replaceAll(" ","-");
-        this.albumId = document.getAlbum().getId();
-        this.albumName = document.getAlbum().getTitle();
+        if(document.getAlbum() != null){
+            this.albumId = document.getAlbum().getId();
+            this.albumName = document.getAlbum().getTitle();
+        }
     }
 
     public Long getId() {
