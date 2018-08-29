@@ -77,7 +77,7 @@ public class DocumentController {
         return UPDATE_PAGE;
     }
 
-    @PostMapping("/admin/updateDocument/{title}/{id}")
+    @PostMapping("/admin/updateDocument/{id}")
     public String update(@Valid @ModelAttribute(DOCUMENT) DocumentDTO documentDTO, BindingResult result, Model model, @PathVariable Integer id){
         if (result.hasErrors()){
             model.addAttribute(DOCUMENT,documentDTO);

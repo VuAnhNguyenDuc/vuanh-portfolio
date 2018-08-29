@@ -49,9 +49,7 @@
                         <p th:if="${#fields.hasErrors('coverSrc')}" th:errors="*{coverSrc}" class="error"></p>
                     </div>
 
-                    <div class="form-group">
-                        <label for="preview">Preview</label>
-                        <img src="" class="img-fluid" id="preview" th:src="*{coverSrc}" th:alt="*{title}"/>
+                    <div class="form-group" id="img-preview">
                     </div>
 
                     <div class="form-group">
@@ -81,8 +79,9 @@
 </th:block>
 <th:block th:insert="admin/layout :: jsLibs">
 </th:block>
+<script type="application/javascript" th:src="@{/js/admin-check-img.js}"></script>
 <script type="application/javascript">
-    $('#description').summernote({
+    $('#content').summernote({
         placeholder : '.....',
         tabsize : 2,
         height : 100

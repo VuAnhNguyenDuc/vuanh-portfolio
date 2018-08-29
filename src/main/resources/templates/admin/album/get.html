@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="NguyenDucVuAnh">
-    <title>DOCUMENTS</title>
+    <title>Title</title>
     <th:block th:insert="admin/layout :: cssLibs">
     </th:block>
 </head>
@@ -16,7 +16,7 @@
 <th:block th:insert="admin/layout :: navbar">
 </th:block>
 <div id="wrapper">
-    <th:block th:insert="admin/layout :: sidebar('document')">
+    <th:block th:insert="admin/layout :: sidebar('album')">
     </th:block>
     <div id="content-wrapper">
         <div class="container-fluid">
@@ -25,14 +25,14 @@
                 <li class="breadcrumb-item">
                     <a th:href="@{/admin}">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item active">Documents</li>
+                <li class="breadcrumb-item active">Albums</li>
             </ol>
 
             <div class="card mb-3">
                 <div class="card-header">
                     <i class="fas fa-table"></i>
-                    Showing List Of Documents
-                    <a th:href="@{/admin/createDocument}" role="button" class="btn btn-primary">Create New Document</a>
+                    Showing List Of Albums
+                    <a th:href="@{/admin/createAlbum}" role="button" class="btn btn-primary">Create New Album</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -40,31 +40,30 @@
                             <thead>
                             <tr>
                                 <th>TITLE</th>
-                                <th>COVER PREVIEW</th>
-                                <th>BELONGS TO ALBUM</th>
+                                <th>COVER</th>
+                                <th>DESCRIPTION</th>
                                 <th>CREATED AT</th>
                                 <th>LAST UPDATED</th>
-                                <th></th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
                                 <th>TITLE</th>
-                                <th>COVER PREVIEW</th>
-                                <th>BELONGS TO ALBUM</th>
+                                <th>COVER</th>
+                                <th>DESCRIPTION</th>
                                 <th>CREATED AT</th>
                                 <th>LAST UPDATED</th>
-                                <th></th>
                             </tr>
                             </tfoot>
                             <tbody>
-                            <tr th:each="doc : ${documents}">
-                                <td th:text="${doc.title}"></td>
-                                <td><img src="" th:src="${doc.coverSrc}" th:alt="${doc.title}" class="img-thumbnail"/></td>
-                                <td th:text="${doc.albumName}"></td>
-                                <td th:text="${doc.createdAt}"></td>
-                                <td th:text="${doc.updatedAt}"></td>
-                                <td><a th:href="@{/admin/updateDocument/{name}/{id}(id=${doc.id},name=${doc.titleUrl})}" class="btn btn-success" role="button">Update</a></td>
+                            <tr>${album.title}</tr>
+                            <tr><img src="" th:src="${album.coverSrc}" th:alt="${album.title}" class="img-thumbnail"/></tr>
+                            <tr>${album.description}</tr>
+                            <tr>${album.createdAt}</tr>
+                            <tr>${album.updatedAt}</tr>
+                            <tr th:each="album : ${albums}">
+                                <td><a th:href="@{/admin/album/{name}/{id}(id=${album.id},name=${album.titleUrl})}" class="btn btn-success"
+                                       role="button">Details</a></td>
                             </tr>
                             </tbody>
                         </table>
