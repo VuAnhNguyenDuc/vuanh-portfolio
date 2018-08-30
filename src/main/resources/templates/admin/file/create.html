@@ -49,6 +49,9 @@
                         <p th:if="${#fields.hasErrors('cloudSrc')}" th:errors="*{cloudSrc}" class="error"></p>
                     </div>
 
+                    <div class="form-group" id="img-preview">
+                    </div>
+
                     <div class="form-group">
                         <label for="description">Description</label>
                         <textarea id="description" class="form-control" th:field="*{description}"></textarea>
@@ -63,7 +66,8 @@
                     </div>
 
                     <span class="input-group-btn">
-                        <button href="" type="submit" class="btn btn-primary btn-form display-4">SEND FORM</button>
+                        <button href="" type="buton" class="btn btn-primary btn-form display-4" id="check-btn">SEND FORM</button>
+                        <button href="" type="submit" hidden="hidden" id="submit"></button>
                     </span>
                 </form>
             </div>
@@ -82,6 +86,46 @@
         tabsize : 2,
         height : 100
     });
+
+    $(document).ready(function () {
+        var src = $('#cloudSrc').val();
+        var type = $('#type').val();
+        if(src.length > 0 && type === 'IMAGE'){
+            addImage(src);
+        }
+    });
+
+    $('#cloudSrc').change(function () {
+        if($('#type').val() === 'IMAGE'){
+            var src = $('#cloudSrc').val();
+            addImage(src);
+        }
+    });
+
+    $('#check-btn').click(function () {
+        var src = $('#cloudSrc').val();
+        if(!doesFileExist(src)){
+            alert("Invalid file specified");
+        } else{
+            $('#submit').click();
+        }
+    });
+
+    function doesFileExist(urlToFile) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('HEAD', urlToFile, false);
+        xhr.send();
+
+        return xhr.status !== "404";
+    }
+
+    function addImage(coverSrc) {
+        var img = "<img src='"+coverSrc+"' alt='Not A Valid Image' class='img-fluid' id='preview'/>";
+        var imgPreviewDiv = $('#img-preview');
+        imgPreviewDiv.empty();
+        imgPreviewDiv.append(img);
+    }
+
 </script>
 </body>
 </html>
