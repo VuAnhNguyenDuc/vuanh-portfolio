@@ -6,11 +6,9 @@ import com.vuanhnguyenduc.vuanhportfolio.model.Document;
 import com.vuanhnguyenduc.vuanhportfolio.repository.AlbumRepository;
 import com.vuanhnguyenduc.vuanhportfolio.repository.DocumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
