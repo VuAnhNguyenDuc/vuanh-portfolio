@@ -8,13 +8,14 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "DOCUMENT")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt",""})
-public class Document {
+public class Document implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

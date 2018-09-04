@@ -22,7 +22,7 @@ import java.util.Date;
 public class File implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "file_generator")
-    @SequenceGenerator(name = "file_generator", sequenceName = "file_seq", initialValue = 1, allocationSize = 50)
+    @SequenceGenerator(name = "file_generator", sequenceName = "file_seq")
     @Column(name = "FILE_ID", unique = true, nullable = false)
     private Long id;
 

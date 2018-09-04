@@ -7,6 +7,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -14,7 +15,7 @@ import java.util.Set;
 @Table(name = "ALBUM")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt","updatedAt"}, allowGetters = true)
-public class Album {
+public class Album implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ALBUM_ID", nullable = false)
@@ -31,11 +32,25 @@ public class Album {
     private String description;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "ALBUM_FILE",
+    @JoinTable(name = "ALBUM_IMAGE",
             joinColumns = {@JoinColumn(name = "ALBUM_ID")},
             inverseJoinColumns = {@JoinColumn(name = "FILE_ID")}
     )
-    private Set<File> files;
+    private Set<File> images;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "ALBUM_VIDEO",
+            joinColumns = {@JoinColumn(name = "ALBUM_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "FILE_ID")}
+    )
+    private Set<File> videos;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "ALBUM_DOCUMENT",
+            joinColumns = {@JoinColumn(name = "ALBUM_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "FILE_ID")}
+    )
+    private Set<File> docs;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "ALBUM_ID")
@@ -83,12 +98,28 @@ public class Album {
         this.description = description;
     }
 
-    public Set<File> getFiles() {
-        return files;
+    public Set<File> getImages() {
+        return images;
     }
 
-    public void setFiles(Set<File> files) {
-        this.files = files;
+    public void setImages(Set<File> images) {
+        this.images = images;
+    }
+
+    public Set<File> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(Set<File> videos) {
+        this.videos = videos;
+    }
+
+    public Set<File> getDocs() {
+        return docs;
+    }
+
+    public void setDocs(Set<File> docs) {
+        this.docs = docs;
     }
 
     public Date getCreatedAt() {

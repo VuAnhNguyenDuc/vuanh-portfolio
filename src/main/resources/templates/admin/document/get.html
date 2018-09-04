@@ -60,7 +60,11 @@
                             <tbody>
                             <tr th:each="doc : ${documents}">
                                 <td th:text="${doc.title}"></td>
-                                <td><img src="" th:src="${doc.coverSrc}" th:alt="${doc.title}" class="img-thumbnail"/></td>
+                                <td>
+                                    <a th:href="${doc.coverSrc}" target="_blank">
+                                        <img src="" th:src="${doc.coverSrc}" th:alt="${doc.title}" class="img-thumbnail">
+                                    </a>
+                                </td>
                                 <td th:text="${doc.albumName}"></td>
                                 <td th:text="${doc.createdAt}"></td>
                                 <td th:text="${doc.updatedAt}"></td>

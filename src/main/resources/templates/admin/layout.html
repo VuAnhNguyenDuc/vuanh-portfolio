@@ -24,6 +24,9 @@
     <!-- summernote css https://summernote.org -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
 
+    <!-- Image Picker -->
+    <link th:href="@{/vendor/image-picker/css/image-picker.css}" rel="stylesheet">
+
     <!-- Custom styles for this template-->
     <link th:href="@{/css/sb-admin.css}" rel="stylesheet">
     </th:block>
@@ -85,7 +88,7 @@
         </a>
     </li>
     <li class="nav-item" th:classappend="${activeTab == 'album'} ? active">
-        <a class="nav-link" th:href="@{/admin/album}">
+        <a class="nav-link" th:href="@{/admin/albums}">
             <i class="fa fa-fw fa-book"></i>
             <span>Albums</span>
         </a>
@@ -127,6 +130,34 @@
 </a>
 </th:block>
 
+<th:block th:fragment="imageSelector">
+<div class="modal fade" id="imageSelector">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Image Selector</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <select multiple="multiple" class="form-control image-picker" id="file" th:field="*{images}">
+                    <option th:each="image : ${allImages}" th:data-img-src="${image.cloudSrc}" th:data-img-class="img-thumbnail" th:value="${image.id}" th:text="${image.title}"></option>
+                </select>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+</th:block>
+
 <th:block th:fragment="logoutModal">
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -164,6 +195,9 @@
 
 <!--summernote js https://summernote.org-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
+
+<!-- Image Picker -->
+<script type="application/javascript" th:src="@{/vendor/image-picker/js/image-picker.min.js}"></script>
 
 <!-- Custom scripts for all pages-->
 <script type="application/javascript" th:src="@{/js/sb-admin.min.js}"></script>

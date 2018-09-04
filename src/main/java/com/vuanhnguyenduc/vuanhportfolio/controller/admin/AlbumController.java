@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class AlbumController {
@@ -39,13 +42,18 @@ public class AlbumController {
 
     @GetMapping("/admin/albums")
     public String getAlbums(Model model){
-        model.addAttribute(ALBUMS,albumRepository.findAll());
+        List<Album> albums = albumRepository.findAll();
+        List<AlbumDTO> albumDTOS = new ArrayList<>();
+        for(Album album : albums){
+            albumDTOS.add(new AlbumDTO(album));
+        }
+        model.addAttribute(ALBUMS,albumDTOS);
         return GET_PAGE;
     }
 
     @GetMapping("/admin/createAlbum")
     public String createPage(Model model){
-        model.addAttribute(ALBUM, new Album());
+        model.addAttribute(ALBUM, new AlbumDTO());
         return CREATE_PAGE;
     }
 
@@ -57,7 +65,7 @@ public class AlbumController {
         }
 
         if(result.hasErrors()){
-            model.addAttribute(ALBUM,album);
+            model.addAttribute(ALBUM,albumDTO);
             return CREATE_PAGE;
         } else{
             album = new Album();
@@ -92,7 +100,9 @@ public class AlbumController {
         album.setCoverSrc(albumDTO.getCoverSrc());
         album.setDescription(albumDTO.getDescription());
         album.setDocuments(albumDTO.getDocuments());
-        album.setFiles(albumDTO.getFiles());
+        album.setImages(albumDTO.getImages());
+        album.setDocs(albumDTO.getDocs());
+        album.setVideos(albumDTO.getVideos());
     }
 
     @ModelAttribute("documents")
@@ -100,19 +110,24 @@ public class AlbumController {
         return documentRepository.findAll();
     }
 
-    @ModelAttribute("images")
+    @ModelAttribute("allImages")
     public List<File> getImages(){
-        return fileRepository.findByType("IMAGES");
+        //HashMap<Integer,String> images = new HashMap<>();
+        List<File> imageFiles = fileRepository.findByType("IMAGE");
+        /*for(File image : imageFiles){
+            images.put(Math.toIntExact(image.getId()),image.getCloudSrc());
+        }*/
+        return imageFiles;
     }
 
-    @ModelAttribute("videos")
+    @ModelAttribute("allVideos")
     public List<File> getVideos(){
-        return fileRepository.findByType("VIDEOS");
+        return fileRepository.findByType("VIDEO");
     }
 
-    @ModelAttribute("documents")
+    @ModelAttribute("allDocuments")
     public List<File> getDocumentsFiles(){
-        return fileRepository.findByType("DOCUMENTS");
+        return fileRepository.findByType("DOCUMENT");
     }
 
 }

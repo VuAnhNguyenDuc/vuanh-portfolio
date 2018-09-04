@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="NguyenDucVuAnh">
-    <title>Title</title>
+    <title>CREATE ALBUM</title>
     <th:block th:insert="admin/layout :: cssLibs">
     </th:block>
 </head>
@@ -39,13 +39,13 @@
                     <form class="col-lg-8" th:action="@{/admin/createAlbum}" method="post" th:object="${album}" autocomplete="off">
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input placeholder="Enter Title" class="form-control" id="title" th:field="*{title}" required>
+                            <input placeholder="Enter Title" class="form-control" id="title" th:field="*{title}" required="required">
                             <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error"></p>
                         </div>
 
                         <div class="form-group">
                             <label for="coverSrc">Cover Source</label>
-                            <input placeholder="....." class="form-control" id="coverSrc" th:field="*{coverSrc}" required>
+                            <input placeholder="....." class="form-control" id="coverSrc" th:field="*{coverSrc}" required="required">
                             <p th:if="${#fields.hasErrors('coverSrc')}" th:errors="*{coverSrc}" class="error"></p>
                         </div>
 
@@ -59,18 +59,20 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="file">Files</label>
-                            <select class="form-control" id="file" th:field="*{files}">
-                                <option th:each="file : ${files}" th:value="${file.key}" th:text="${file.value}"></option>
-                            </select>
+                            <label>Images</label>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageSelector">
+                                SELECT IMAGES
+                            </button>
+                            <th:block th:insert="admin/layout :: imageSelector">
+                            </th:block>
                         </div>
 
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label for="doc">Documents</label>
                             <select class="form-control" id="doc" th:field="*{documents}">
                                 <option th:each="doc : ${docs}" th:value="${doc.key}" th:text="${doc.value}"></option>
                             </select>
-                        </div>
+                        </div>-->
 
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-primary btn-form display-4" id="check-btn">SEND FORM</button>
@@ -88,5 +90,12 @@
 </th:block>
 <th:block th:insert="admin/layout :: jsLibs">
 </th:block>
+<script type="application/javascript" th:src="@{/js/admin-check-img.js}"></script>
+<script type="application/javascript">
+    $("#file").imagepicker({
+        hide_select : true,
+        show_label  : false
+    })
+</script>
 </body>
 </html>

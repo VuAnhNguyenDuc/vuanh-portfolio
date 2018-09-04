@@ -13,8 +13,10 @@ public class AlbumDTO implements Serializable {
     private String coverSrc;
     private String title;
     private String description;
-    private Set<File> files;
-    private Set<Document> documents;
+    private Set<File> images;
+    private Set<File> videos;
+    private Set<File> docs;
+    private transient  Set<Document> documents;
     private Date createdAt;
     private Date updatedAt;
     private String titleUrl;
@@ -24,7 +26,9 @@ public class AlbumDTO implements Serializable {
         this.coverSrc = album.getCoverSrc();
         this.title = album.getTitle();
         this.description = album.getDescription();
-        this.files = album.getFiles();
+        this.images = album.getImages();
+        this.videos = album.getVideos();
+        this.docs = album.getDocs();
         this.documents = album.getDocuments();
         this.createdAt = album.getCreatedAt();
         this.updatedAt = album.getUpdatedAt();
@@ -66,12 +70,28 @@ public class AlbumDTO implements Serializable {
         this.description = description;
     }
 
-    public Set<File> getFiles() {
-        return files;
+    public Set<File> getImages() {
+        return images;
     }
 
-    public void setFiles(Set<File> files) {
-        this.files = files;
+    public void setImages(Set<File> images) {
+        this.images = images;
+    }
+
+    public Set<File> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(Set<File> videos) {
+        this.videos = videos;
+    }
+
+    public Set<File> getDocs() {
+        return docs;
+    }
+
+    public void setDocs(Set<File> docs) {
+        this.docs = docs;
     }
 
     public Set<Document> getDocuments() {

@@ -60,7 +60,11 @@
                         <tbody>
                         <tr th:each="file : ${files}">
                             <td th:text="${file.title}"></td>
-                            <td><a th:href="${file.cloudSrc}" th:text="${file.cloudSrc}"></a></td>
+                            <td>
+                                <a th:href="${file.cloudSrc}" target="_blank">
+                                    <img src="" th:src="${file.cloudSrc}" th:alt="${file.title}" class="img-thumbnail">
+                                </a>
+                            </td>
                             <td th:text="${file.type}"></td>
                             <td th:text="${file.createdAt}"></td>
                             <td th:text="${file.updatedAt}"></td>

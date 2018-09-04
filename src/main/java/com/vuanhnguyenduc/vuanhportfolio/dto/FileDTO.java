@@ -1,9 +1,6 @@
 package com.vuanhnguyenduc.vuanhportfolio.dto;
 
 import com.vuanhnguyenduc.vuanhportfolio.model.File;
-import org.springframework.util.StringUtils;
-
-
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;

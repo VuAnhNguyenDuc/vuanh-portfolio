@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="NguyenDucVuAnh">
-    <title>Title</title>
+    <title>ALBUMS</title>
     <th:block th:insert="admin/layout :: cssLibs">
     </th:block>
 </head>
@@ -56,14 +56,19 @@
                             </tr>
                             </tfoot>
                             <tbody>
-                            <tr>${album.title}</tr>
-                            <tr><img src="" th:src="${album.coverSrc}" th:alt="${album.title}" class="img-thumbnail"/></tr>
-                            <tr>${album.description}</tr>
-                            <tr>${album.createdAt}</tr>
-                            <tr>${album.updatedAt}</tr>
                             <tr th:each="album : ${albums}">
-                                <td><a th:href="@{/admin/album/{name}/{id}(id=${album.id},name=${album.titleUrl})}" class="btn btn-success"
-                                       role="button">Details</a></td>
+                                <td th:text="${album.title}"></td>
+                                <td>
+                                    <a th:href="${album.coverSrc}" target="_blank">
+                                        <img src="" th:src="${album.coverSrc}" th:alt="${album.title}" class="img-thumbnail">
+                                    </a>
+                                </td>
+                                <td th:text="${album.description}"></td>
+                                <td th:text="${album.createdAt}"></td>
+                                <td th:text="${album.updatedAt}"></td>
+                                <td>
+                                    <a th:href="@{/admin/album/{name}/{id}(id=${album.id},name=${album.titleUrl})}" class="btn btn-success" role="button">Details</a>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
