@@ -62,7 +62,12 @@
                             <td th:text="${file.title}"></td>
                             <td>
                                 <a th:href="${file.cloudSrc}" target="_blank">
-                                    <img src="" th:src="${file.cloudSrc}" th:alt="${file.title}" class="img-thumbnail">
+                                    <th:block th:if="${file.type == 'IMAGE'}">
+                                        <img src="" th:src="${file.cloudSrc}" th:alt="${file.title}" class="img-thumbnail">
+                                    </th:block>
+                                    <th:block th:if="${file.type != 'IMAGE'}">
+                                        <span th:text="${file.cloudSrc}"></span>
+                                    </th:block>
                                 </a>
                             </td>
                             <td th:text="${file.type}"></td>

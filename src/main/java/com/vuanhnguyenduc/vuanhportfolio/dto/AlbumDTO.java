@@ -4,6 +4,7 @@ import com.vuanhnguyenduc.vuanhportfolio.model.Album;
 import com.vuanhnguyenduc.vuanhportfolio.model.Document;
 import com.vuanhnguyenduc.vuanhportfolio.model.File;
 
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -11,6 +12,7 @@ import java.util.Set;
 public class AlbumDTO implements Serializable {
     private Long id;
     private String coverSrc;
+    @Size(min = 5, message = "Album title cannot be lower than 5 characters")
     private String title;
     private String description;
     private Set<File> images;

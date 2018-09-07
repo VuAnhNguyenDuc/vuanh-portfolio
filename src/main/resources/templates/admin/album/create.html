@@ -65,13 +65,27 @@
                             </button>
                             <th:block th:insert="admin/layout :: imageSelector">
                             </th:block>
+                            <div id="img-selector"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Document Files</label>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#docSelector">
+                                SELECT DOCUMENT FILES
+                            </button>
+                            <th:block th:insert="admin/layout :: docSelector">
+                            </th:block>
+                            <div id="doc-selector"></div>
                         </div>
 
                         <!--<div class="form-group">
-                            <label for="doc">Documents</label>
-                            <select class="form-control" id="doc" th:field="*{documents}">
-                                <option th:each="doc : ${docs}" th:value="${doc.key}" th:text="${doc.value}"></option>
-                            </select>
+                            <label>Videos</label>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#videoSelector">
+                                SELECT VIDEOS
+                            </button>
+                            <th:block th:insert="admin/layout :: videoSelector">
+                            </th:block>
+                            <div id="video-selector"></div>
                         </div>-->
 
                         <span class="input-group-btn">
@@ -91,10 +105,15 @@
 <th:block th:insert="admin/layout :: jsLibs">
 </th:block>
 <script type="application/javascript" th:src="@{/js/admin-check-img.js}"></script>
+<script type="application/javascript" th:src="@{/js/admin-file-selector.js}"></script>
 <script type="application/javascript">
-    $("#file").imagepicker({
+    $("#img-picker").imagepicker({
         hide_select : true,
         show_label  : false
+    });
+    $("#doc-picker").imagepicker({
+        hide_select : true,
+        show_label  : true
     })
 </script>
 </body>

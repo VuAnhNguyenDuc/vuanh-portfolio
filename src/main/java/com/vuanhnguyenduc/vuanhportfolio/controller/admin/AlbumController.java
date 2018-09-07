@@ -112,12 +112,7 @@ public class AlbumController {
 
     @ModelAttribute("allImages")
     public List<File> getImages(){
-        //HashMap<Integer,String> images = new HashMap<>();
-        List<File> imageFiles = fileRepository.findByType("IMAGE");
-        /*for(File image : imageFiles){
-            images.put(Math.toIntExact(image.getId()),image.getCloudSrc());
-        }*/
-        return imageFiles;
+        return fileRepository.findByType("IMAGE");
     }
 
     @ModelAttribute("allVideos")

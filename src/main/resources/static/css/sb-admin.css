@@ -32,6 +32,10 @@ body {
     line-height: 1.471;
 }
 
+.img-thumbnail{
+    max-width: 200px;
+}
+
 .input-group-btn{
     display: block;
     text-align: center;
