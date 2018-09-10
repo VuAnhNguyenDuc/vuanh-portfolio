@@ -49,6 +49,12 @@
                         <p th:if="${#fields.hasErrors('cloudSrc')}" th:errors="*{cloudSrc}" class="error"></p>
                     </div>
 
+                    <div class="form-group">
+                        <label for="thumbnailSrc">Thumbnail</label>
+                        <input placeholder="....." class="form-control" id="thumbnailSrc" th:field="*{thumbnailSrc}" required>
+                        <p th:if="${#fields.hasErrors('thumbnailSrc')}" th:errors="*{thumbnailSrc}" class="error"></p>
+                    </div>
+
                     <div class="form-group" id="img-preview">
                     </div>
 

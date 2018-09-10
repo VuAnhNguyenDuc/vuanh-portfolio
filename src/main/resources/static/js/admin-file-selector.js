@@ -35,8 +35,9 @@ function getSelectedDocs(){
     $("#doc-picker").find("option:selected").each(function () {
         var $this = $(this).text();
         var $value = $(this).attr('data-img-label');
+        var $url = $(this).attr('data-doc-url');
         if($this.length > 0){
-            var img = "<a href='"+$this+"' target='_blank'><figure>" +
+            var img = "<a href='"+$url+"' target='_blank'><figure>" +
                 "<img src='/images/file-preview.png' alt='No Preview Available' class='img-thumbnail'/>" +
                 "<figcaption>"+$value+"</figcaption>" +
                 "</figure></a>";
@@ -46,5 +47,18 @@ function getSelectedDocs(){
 }
 
 function getSelectedVideos(){
-
+    var videoPreviewDiv = $('#video-selector');
+    videoPreviewDiv.empty();
+    $("#video-picker").find("option:selected").each(function () {
+        var $this = $(this).text();
+        var $value = $(this).attr('data-img-label');
+        var $url = $(this).attr('data-video-url');
+        if($this.length > 0){
+            var img = "<a href='"+$url+"' target='_blank'><figure>" +
+                "<img src='"+$this+"' alt='No Preview Available' class='img-thumbnail'/>" +
+                "<figcaption>"+$value+"</figcaption>" +
+                "</figure></a>";
+            videoPreviewDiv.append(img);
+        }
+    });
 }

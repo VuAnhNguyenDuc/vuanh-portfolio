@@ -103,5 +103,6 @@ public class FileController {
         file.setDescription(fileDTO.getDescription());
         file.setCloudSrc(fileDTO.getCloudSrc());
         file.setType(fileDTO.getType());
+        file.setThumbnailSrc(fileDTO.getThumbnailSrc());
     }
 }

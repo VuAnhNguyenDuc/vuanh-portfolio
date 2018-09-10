@@ -78,7 +78,7 @@
                             <div id="doc-selector"></div>
                         </div>
 
-                        <!--<div class="form-group">
+                        <div class="form-group">
                             <label>Videos</label>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#videoSelector">
                                 SELECT VIDEOS
@@ -86,7 +86,7 @@
                             <th:block th:insert="admin/layout :: videoSelector">
                             </th:block>
                             <div id="video-selector"></div>
-                        </div>-->
+                        </div>
 
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-primary btn-form display-4" id="check-btn">SEND FORM</button>
@@ -112,6 +112,10 @@
         show_label  : false
     });
     $("#doc-picker").imagepicker({
+        hide_select : true,
+        show_label  : true
+    });
+    $("#video-picker").imagepicker({
         hide_select : true,
         show_label  : true
     })

@@ -38,38 +38,38 @@
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                            <tr>
-                                <th>TITLE</th>
-                                <th>COVER</th>
-                                <th>DESCRIPTION</th>
-                                <th>CREATED AT</th>
-                                <th>LAST UPDATED</th>
-                            </tr>
+                                <tr>
+                                    <th>TITLE</th>
+                                    <th>COVER</th>
+                                    <th>DESCRIPTION</th>
+                                    <th>CREATED AT</th>
+                                    <th>LAST UPDATED</th>
+                                </tr>
                             </thead>
                             <tfoot>
-                            <tr>
-                                <th>TITLE</th>
-                                <th>COVER</th>
-                                <th>DESCRIPTION</th>
-                                <th>CREATED AT</th>
-                                <th>LAST UPDATED</th>
-                            </tr>
+                                <tr>
+                                    <th>TITLE</th>
+                                    <th>COVER</th>
+                                    <th>DESCRIPTION</th>
+                                    <th>CREATED AT</th>
+                                    <th>LAST UPDATED</th>
+                                </tr>
                             </tfoot>
                             <tbody>
-                            <tr th:each="album : ${albums}">
-                                <td th:text="${album.title}"></td>
-                                <td>
-                                    <a th:href="${album.coverSrc}" target="_blank">
-                                        <img src="" th:src="${album.coverSrc}" th:alt="${album.title}" class="img-thumbnail">
-                                    </a>
-                                </td>
-                                <td th:text="${album.description}"></td>
-                                <td th:text="${album.createdAt}"></td>
-                                <td th:text="${album.updatedAt}"></td>
-                                <td>
-                                    <a th:href="@{/admin/album/{name}/{id}(id=${album.id},name=${album.titleUrl})}" class="btn btn-success" role="button">Details</a>
-                                </td>
-                            </tr>
+                                <tr th:each="album : ${albums}">
+                                    <td th:text="${album.title}"></td>
+                                    <td>
+                                        <a th:href="${album.coverSrc}" target="_blank">
+                                            <img src="" th:src="${album.coverSrc}" th:alt="${album.title}" class="img-thumbnail">
+                                        </a>
+                                    </td>
+                                    <td th:text="${album.description}"></td>
+                                    <td th:text="${album.createdAt}"></td>
+                                    <td th:text="${album.updatedAt}"></td>
+                                    <td>
+                                        <a th:href="@{/admin/updateAlbum/{name}/{id}(id=${album.id},name=${album.titleUrl})}" class="btn btn-success" role="button">Details</a>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

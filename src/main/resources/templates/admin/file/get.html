@@ -62,10 +62,10 @@
                             <td th:text="${file.title}"></td>
                             <td>
                                 <a th:href="${file.cloudSrc}" target="_blank">
-                                    <th:block th:if="${file.type == 'IMAGE'}">
-                                        <img src="" th:src="${file.cloudSrc}" th:alt="${file.title}" class="img-thumbnail">
+                                    <th:block th:if="${file.thumbnailSrc != null}">
+                                        <img src="" th:src="${file.thumbnailSrc}" th:alt="${file.title}" class="img-thumbnail">
                                     </th:block>
-                                    <th:block th:if="${file.type != 'IMAGE'}">
+                                    <th:block th:if="${file.thumbnailSrc == null}">
                                         <span th:text="${file.cloudSrc}"></span>
                                     </th:block>
                                 </a>
@@ -74,11 +74,6 @@
                             <td th:text="${file.createdAt}"></td>
                             <td th:text="${file.updatedAt}"></td>
                             <td><a th:href="@{/admin/updateFile/{filename}/{id}(id=${file.id},filename=${file.titleUrl})}" class="btn btn-success" role="button">Update</a></td>
-
-                            <!--<th:block th:with="title=${#strings.toLowerCase(file.title)},filename=${#strings.multipleReplace(title,{' '},{'-'})}">
-                                <td>&lt;!&ndash;/*@thymesVar id="file" type=""*/&ndash;&gt;
-                                <a th:href="@{/admin/updateFile/{filename}/{id}(id=${file.id},filename=${filename})}" class="btn btn-success" role="button">Update</a></td>
-                            </th:block>-->
                         </tr>
                         </tbody>
                     </table>

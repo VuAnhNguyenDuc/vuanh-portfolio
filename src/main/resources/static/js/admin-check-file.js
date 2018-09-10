@@ -1,16 +1,13 @@
 $(document).ready(function () {
-    var src = $('#cloudSrc').val();
-    var type = $('#type').val();
-    if(src.length > 0 && type === 'IMAGE'){
+    var src = $('#thumbnailSrc').val();
+    if(src.length > 0){
         addImage(src);
     }
 });
 
-$('#cloudSrc').change(function () {
-    if($('#type').val() === 'IMAGE'){
-        var src = $('#cloudSrc').val();
-        addImage(src);
-    }
+$('#thumbnailSrc').change(function () {
+    var src = $('#thumbnailSrc').val();
+    addImage(src);
 });
 
 $('#check-btn').click(function () {
@@ -27,7 +24,7 @@ function doesFileExist(urlToFile) {
     xhr.open('HEAD', urlToFile, false);
     xhr.send();
 
-    return xhr.status !== "404";
+    return xhr.status !== 404;
 }
 
 function addImage(coverSrc) {

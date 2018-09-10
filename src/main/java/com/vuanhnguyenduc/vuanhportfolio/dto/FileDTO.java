@@ -12,6 +12,7 @@ public class FileDTO implements Serializable{
     private String description;
     @NotBlank(message = "Mandatory Field")
     private String cloudSrc;
+    private String thumbnailSrc;
     private String type;
     private Date createdAt;
     private Date updatedAt;
@@ -26,6 +27,7 @@ public class FileDTO implements Serializable{
         this.title = file.getTitle();
         this.description = file.getDescription();
         this.cloudSrc = file.getCloudSrc();
+        this.thumbnailSrc = file.getThumbnailSrc();
         this.type = file.getType();
         this.createdAt = file.getCreatedAt();
         this.updatedAt = file.getUpdatedAt();
@@ -94,5 +96,13 @@ public class FileDTO implements Serializable{
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getThumbnailSrc() {
+        return thumbnailSrc;
+    }
+
+    public void setThumbnailSrc(String thumbnailSrc) {
+        this.thumbnailSrc = thumbnailSrc;
     }
 }

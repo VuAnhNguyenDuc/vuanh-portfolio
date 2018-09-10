@@ -37,6 +37,9 @@ public class File implements Serializable{
     @NotBlank(message = "Mandatory Field")
     private String cloudSrc;
 
+    @Column(name = "THUMBNAIL_SRC")
+    private String thumbnailSrc;
+
     @Column(name = "TYPE", nullable = false)
     private String type;
 
@@ -104,5 +107,13 @@ public class File implements Serializable{
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getThumbnailSrc() {
+        return thumbnailSrc;
+    }
+
+    public void setThumbnailSrc(String thumbnailSrc) {
+        this.thumbnailSrc = thumbnailSrc;
     }
 }

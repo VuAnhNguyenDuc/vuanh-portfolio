@@ -172,7 +172,35 @@
                 <!-- Modal body -->
                 <div class="modal-body">
                     <select multiple="multiple" class="form-control image-picker" id="doc-picker" th:field="*{docs}">
-                        <option th:each="doc : ${allDocuments}" th:data-img-src="@{/images/file-preview.png}" th:data-img-class="img-thumbnail" th:data-img-label="${doc.title}" th:value="${doc.id}" th:text="${doc.cloudSrc}"></option>
+                        <option th:each="doc : ${allDocuments}" th:data-img-src="${doc.thumbnailSrc}" th:data-img-class="img-thumbnail" th:data-img-label="${doc.title}" th:data-doc-url="${doc.cloudSrc}" th:value="${doc.id}" th:text="${doc.thumbnailSrc}"></option>
+                    </select>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</th:block>
+
+<th:block th:fragment="videoSelector">
+    <div class="modal fade" id="videoSelector">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Video Selector</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <select multiple class="form-control image-picker" id="video-picker" th:field="*{videos}">
+                        <option th:each="video : ${allVideos}" th:data-img-src="${video.thumbnailSrc}" th:data-img-class="img-thumbnail" th:data-img-label="${video.title}" th:data-video-url="${video.cloudSrc}" th:value="${video.id}" th:text="${video.thumbnailSrc}"></option>
                     </select>
                 </div>
 
