@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
       lang="en">
 <head>
     <meta charset="UTF-8">
@@ -66,10 +67,12 @@
                         </select>
                     </div>
 
-                    <span class="input-group-btn">
+                    <th:block sec:authorize="hasAuthority('ADMIN')">
+                        <span class="input-group-btn">
                         <button type="button" class="btn btn-primary btn-form display-4" id="check-btn">SEND FORM</button>
                         <button type="submit" id="submit" hidden="hidden">SEND FORM</button>
                     </span>
+                    </th:block>
                 </form>
             </div>
         </div>

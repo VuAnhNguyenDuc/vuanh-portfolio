@@ -82,7 +82,7 @@ public class AlbumController {
         return UPDATE_PAGE;
     }
 
-    @PostMapping("/admin/updateAlbum/{title}/{id}")
+    @PostMapping("/admin/updateAlbum/{id}")
     public String update(@Valid @ModelAttribute(ALBUM) AlbumDTO albumDTO, BindingResult result, Model model, @PathVariable Integer id){
         if(result.hasErrors()){
             model.addAttribute(ALBUM,albumDTO);
