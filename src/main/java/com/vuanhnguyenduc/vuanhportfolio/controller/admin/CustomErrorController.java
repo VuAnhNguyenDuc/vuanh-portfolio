@@ -1,6 +1,6 @@
 package com.vuanhnguyenduc.vuanhportfolio.controller.admin;
 
-import com.vuanhnguyenduc.vuanhportfolio.commons.Constants;
+import com.vuanhnguyenduc.vuanhportfolio.utils.Constants;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package com.vuanhnguyenduc.vuanhportfolio.commons;
+package com.vuanhnguyenduc.vuanhportfolio.utils;
 
 public final class Constants {
     private Constants(){

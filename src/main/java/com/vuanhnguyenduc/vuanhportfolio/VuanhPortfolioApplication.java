@@ -32,6 +32,9 @@ https://stackoverflow.com/questions/22948257/thymeleaf-not-displaying-spring-for
 
 Primary Keys
 https://www.thoughts-on-java.org/jpa-generate-primary-keys/
+
+Generic Controllers and Service
+https://github.com/fsonmezay/generic-rest-api
 */
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 @EnableJpaAuditing

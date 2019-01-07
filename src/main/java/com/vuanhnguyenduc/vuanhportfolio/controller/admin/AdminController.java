@@ -1,6 +1,6 @@
 package com.vuanhnguyenduc.vuanhportfolio.controller.admin;
 
-import com.vuanhnguyenduc.vuanhportfolio.commons.Constants;
+import com.vuanhnguyenduc.vuanhportfolio.utils.Constants;
 import com.vuanhnguyenduc.vuanhportfolio.config.IAuthenticationFacade;
 import com.vuanhnguyenduc.vuanhportfolio.model.User;
 import com.vuanhnguyenduc.vuanhportfolio.service.UserService;
