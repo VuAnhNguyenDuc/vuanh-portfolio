@@ -14,16 +14,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Table(name = "BLOG")
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = {"createdAt","updatedAt"}, allowGetters = true)
-public class Blog implements Serializable{
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "BLOG_ID", nullable = false)
-  private Long id;
-
-  @Column(name = "TITLE", nullable = false)
-  private String title;
-
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, allowGetters = true)
+public class Blog extends GenericModel{
   @Column(name = "SUB_TITLE")
   private String subTitle;
 
@@ -35,22 +27,6 @@ public class Blog implements Serializable{
 
   @Column(name = "LINK", nullable = false)
   private String link;
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
 
   public String getSubTitle() {
     return subTitle;

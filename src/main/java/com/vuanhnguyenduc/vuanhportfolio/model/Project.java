@@ -1,3 +1,4 @@
+/*
 package com.vuanhnguyenduc.vuanhportfolio.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -15,12 +16,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Table(name = "PROJECT")
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = {"createdAt","updatedAt"}, allowGetters = true)
-public class Project implements Serializable{
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Long id;
-
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, allowGetters = true)
+public class Project extends GenericModel{
   @Column(name = "IMAGES")
   private Set<File> images;
 
@@ -32,14 +29,6 @@ public class Project implements Serializable{
 
   @Column(name = "DESCRIPTION")
   private String description;
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
 
   public Set<File> getImages() {
     return images;
@@ -73,3 +62,4 @@ public class Project implements Serializable{
     this.description = description;
   }
 }
+*/

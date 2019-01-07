@@ -14,22 +14,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Table(name = "TAG")
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = {"createdAt","updatedAt"}, allowGetters = true)
-public class Tag implements Serializable{
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Long id;
-
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, allowGetters = true)
+public class Tag extends GenericModel{
   @Column(name = "VALUE")
   private String value;
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
 
   public String getValue() {
     return value;

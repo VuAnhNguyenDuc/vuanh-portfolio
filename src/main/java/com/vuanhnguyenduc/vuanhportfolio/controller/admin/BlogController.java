@@ -13,9 +13,32 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class BlogController {
+@RequestMapping("/admin/blog")
+public class BlogController extends GenericController<Blog,BlogDTO>{
+  BlogController(){
+    super.getPage = "admin/blog/get";
+    super.createPage = "admin/blog/create";
+  }
+  private static final String ENTITY = "entity";
+  @GetMapping("/admin/blog")
+  public String getBlog(Model model) {
+    return super.getPage(model);
+  }
+  @GetMapping("/admin/createBlog")
+  public String createPage(Model model) {
+    return super.createPage(model,new BlogDTO());
+  }
+  @PostMapping("/admin/createBlog")
+  public String create(@Valid @ModelAttribute(ENTITY) BlogDTO blogDTO, BindingResult result, Model model) {
+    Blog entity = ObjectMapperUtils.map(blogDTO,Blog.class);
+    return super.create(entity,blogDTO,result,model);
+  }
+}
+
+/*
   private static final String GET_PAGE = "admin/blog/get";
   private static final String CREATE_PAGE = "admin/blog/create";
   private static final String UPDATE_PAGE = "admin/blog/update";
@@ -54,4 +77,4 @@ public class BlogController {
       return REDIRECT_BLOG;
     }
   }
-}
+*/

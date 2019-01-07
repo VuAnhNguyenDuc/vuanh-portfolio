@@ -18,18 +18,8 @@ import java.util.Date;
 @Entity
 @Table(name = "FILE")
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = {"createdAt","uploadedAt"}, allowGetters = true)
-public class File implements Serializable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "file_generator")
-    @SequenceGenerator(name = "file_generator", sequenceName = "file_seq")
-    @Column(name = "FILE_ID", unique = true, nullable = false)
-    private Long id;
-
-    @Column(name = "TITLE", nullable = false)
-    @NotBlank(message = "Mandatory Field")
-    private String title;
-
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, allowGetters = true)
+public class File extends GenericModel{
     @Column(name = "DESCRIPTION")
     private String description;
 
@@ -52,22 +42,6 @@ public class File implements Serializable{
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date updatedAt;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public String getDescription() {
         return description;

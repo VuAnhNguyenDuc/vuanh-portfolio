@@ -4,7 +4,7 @@ import com.vuanhnguyenduc.vuanhportfolio.model.Blog;
 import com.vuanhnguyenduc.vuanhportfolio.model.File;
 import java.io.Serializable;
 
-public class BlogDTO implements Serializable{
+public class BlogDTO extends GenericDTO{
   private Long id;
 
   private String title;
